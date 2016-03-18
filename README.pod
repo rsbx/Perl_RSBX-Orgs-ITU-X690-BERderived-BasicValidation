@@ -400,7 +400,7 @@ for use with RSBX::Orgs::ITU::X690::BERderived::BasicValidation::Validate().
 
 The following types of BER object type encoding validation failure hints are
 provided by this profile. Each validation failure hint also identifies the
-specifiec object type encoding(s) that failed the validation.
+specific object type encoding(s) that failed the validation.
 
 =over 4
 
@@ -470,7 +470,7 @@ implemented validator was encountered.
 =back
 
 =item * The following I<string> object type encodings are treated as an
-I<Octet String> encoding and the object type encoding specifi restrictions
+I<Octet String> encoding and the object type encoding specific restrictions
 are not validated:
 
 =over 4
@@ -520,6 +520,188 @@ Patches are welcome.
 L<ITU-T Rec. X.690|https://en.wikipedia.org/wiki/X.690>,
 L<ITU-T Rec. X.680|https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One>,
 L<RSBX::Orgs::ITU::X690::BERderived::BasicValidation>
+
+=head1 AUTHOR
+
+Raymond S Brand E<lt>rsbx@acm.orgE<gt>
+
+=head1 COPYRIGHT
+
+Copyright (c) 2016 Raymond S Brand. All rights reserved.
+
+=head1 LICENSE
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:
+
+=over 4
+
+=item *
+
+Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+
+=item *
+
+Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in
+the documentation and/or other materials provided with the
+distribution.
+
+=item *
+
+Redistributions in source or binary form must carry prominent
+notices of any modifications.
+
+=item *
+
+Neither the name of Raymond S Brand nor the names of its other
+contributors may be used to endorse or promote products derived
+from this software without specific prior written permission.
+
+=back
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+
+=cut
+
+=pod
+
+=head1 NAME
+
+RSBX::Orgs::ITU::X690::BERderived::BasicValidation::DER - BasicValidation DER Profile.
+
+=head1 SYNOPSIS
+
+ use RSBX::Orgs::ITU::X690::BERderived::BasicValidation qw( Validate );
+ use RSBX::Orgs::ITU::X690::BERderived::BasicValidation::DER qw( DER_profile );
+ ...
+ my ($result, $object, $start, $end)
+         = Validate(\$data, 0, length($data), $DER_profile);
+ if ($result ne '')
+     {
+     print "ERROR: obj=$object start=$start end=$end \"$result\"\n";
+     }
+
+=head1 DESCRIPTION
+
+Provides the L<ITU-T Rec. X.690|/SEE ALSO> Distinguished Encoding Rules (DER) profile
+for use with RSBX::Orgs::ITU::X690::BERderived::BasicValidation::Validate().
+
+=head1 DIAGNOSTICS
+
+The following types of DER object type encoding validation failure hints are
+provided by this profile. Each validation failure hint also identifies the
+specific object type encoding(s) that failed the validation.
+
+=over 4
+
+=item * 'DER content encoding:'
+
+The encoded object type content does not conform to that specified in
+L<ITU-T Rec. X.690|/SEE ALSO>.
+
+=item * 'DER object encoding:'
+
+The object type encoding does not conform to that specified in
+L<ITU-T Rec. X.690|/SEE ALSO>.
+
+=back
+
+This profile is a specialization of the
+L<RSBX::Orgs::ITU::X690::BERderived::BasicValidation::BER|/SEE ALSO> profile
+and may provide validation failure hints from that profile also.
+
+=head1 BUGS AND LIMITATIONS
+
+=over 4
+
+=item * Validators for the following object type encodings are not implemented:
+
+=over 4
+
+=over 4
+
+=item Bit String
+
+=item Object Descriptor
+
+=item External and Instance OF
+
+=item Embedded pdv
+
+=item Time
+
+=back
+
+=back
+
+=item * The ordering of Set and Set-of components is not validated.
+
+=item * The following I<string> object type encodings are treated as an
+I<Octet String> encoding and the object type encoding specific restrictions
+are not validated:
+
+=over 4
+
+=over 4
+
+=item UTF8 String
+
+=item Numeric String
+
+=item Printable String
+
+=item Teletex String
+
+=item Videotex String
+
+=item IA5 String
+
+=item Graphic String
+
+=item Visible String
+
+=item General String
+
+=item Universal String
+
+=item Unrestricted Character String
+
+=item BMP String
+
+=back
+
+=back
+
+=item * Almost no parameter validation is performed. code wisely.
+
+=back
+
+Please report problems to Raymond S Brand E<lt>rsbx@acm.orgE<gt>.
+
+Problem reports without included demonstration code and/or tests will be ignored.
+
+Patches are welcome.
+
+=head1 SEE ALSO
+
+L<ITU-T Rec. X.690|https://en.wikipedia.org/wiki/X.690>,
+L<ITU-T Rec. X.680|https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One>,
+L<RSBX::Orgs::ITU::X690::BERderived::BasicValidation>,
+L<RSBX::Orgs::ITU::X690::BERderived::BasicValidation::BER>
 
 =head1 AUTHOR
 

@@ -140,10 +140,6 @@ my $BER_contructed_OctetString_check_table =
 
 sub ObjectCheck_PASS
 	{
-	my ($state, $pdu_ref, $pdu_start, $pdu_end, $class, $tag_number, $constructed_flag, $tag_length, $length_length, $content_length) = @_;
-
-#say join('  ', ($pdu_start, $pdu_end, $class, $tag_number, $constructed_flag, $tag_length, $length_length, $content_length));
-
 	return ('', undef);
 	}
 
@@ -174,21 +170,18 @@ sub ObjectCheck_UNIMPLEMENTED
 
 sub ObjectCheck_BER_general_object_precheck_PASS
 	{
-#say STDERR 'PRE';
 	return ('', undef);
 	}
 
 
 sub ObjectCheck_BER_general_begin_constructed_PASS
 	{
-#say STDERR 'BEGIN';
 	return ('', undef);
 	}
 
 
 sub ObjectCheck_BER_general_finis_constructed_PASS
 	{
-#say STDERR 'FINIS';
 	return ('', undef);
 	}
 

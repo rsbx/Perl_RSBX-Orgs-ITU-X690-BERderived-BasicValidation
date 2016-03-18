@@ -234,7 +234,7 @@ sub ObjectCheck_BER_Integer
 		}
 	elsif ($content_length > 1)
 		{
-		my $msbs = unpack('n', substr(${$pdu_ref}, $pdu_start+$tag_length, 2)) & 0xff80;
+		my $msbs = unpack('n', substr(${$pdu_ref}, $pdu_start+$tag_length+$length_length, 2)) & 0xff80;
 
 		if ($msbs == 0 || $msbs == 0xff80)
 			{
@@ -332,7 +332,7 @@ sub ObjectCheck_BER_Real
 		return ('', undef);
 		}
 
-	my $byte = unpack('C', substr(${$pdu_ref}, $pdu_start+$tag_length, 1));
+	my $byte = unpack('C', substr(${$pdu_ref}, $pdu_start+$tag_length+$length_length, 1));
 	if ($byte & 0xc0 == 0x40)
 		{
 		return (($content_length == 1 && !($byte & 0x3c)) ? '' : 'BER content encoding: Real', undef);
@@ -340,7 +340,7 @@ sub ObjectCheck_BER_Real
 	elsif ($byte & 0xc0 == 0x00)
 		{
 		my $nrform = $byte & 0x3f;
-		my $nrstring = substr(${$pdu_ref}, $pdu_start+$tag_length, $content_length-1);
+		my $nrstring = substr(${$pdu_ref}, $pdu_start+$tag_length+$length_length, $content_length-1);
 
 		if ($nrform == 1
 				&& $nrstring =~ /^ *(\+|-| )?[0-9]+$/
@@ -368,7 +368,7 @@ sub ObjectCheck_BER_Real
 		return ('BER content encoding: Real', undef);
 		}
 
-	if ($content_length < 2 || ($byte & 0x30) == 0x30)
+	if (($byte & 0x30) == 0x30)
 		{
 		return ('BER content encoding: Real', undef);
 		}
@@ -378,14 +378,14 @@ sub ObjectCheck_BER_Real
 	if ($exponent_len > 3)
 		{
 		$header_len++;
-		$byte = unpack('C', substr(${$pdu_ref}, $pdu_start+$tag_length+1, 1));
+		$byte = unpack('C', substr(${$pdu_ref}, $pdu_start+$tag_length+$length_length+1, 1));
 		if (!$byte)
 			{
 			return ('BER content encoding: Real', undef);
 			}
 		$exponent_len = $byte + 1;
 
-		my $msbs = unpack('n', substr(${$pdu_ref}, $pdu_start+$tag_length+$header_len, 2)) & 0xff80;
+		my $msbs = unpack('n', substr(${$pdu_ref}, $pdu_start+$tag_length+$length_length+$header_len, 2)) & 0xff80;
 
 		if ($msbs == 0 || $msbs == 0xff80)
 			{

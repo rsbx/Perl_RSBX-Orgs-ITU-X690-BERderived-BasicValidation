@@ -36,7 +36,7 @@
 #  POSSIBILITY OF SUCH DAMAGE.
 
 
-package RSBX::Orgs::ITU::X690::BERderived::BasicValidation::BER v0.1.1.0;
+package RSBX::Orgs::ITU::X690::BERderived::BasicValidation::BER v0.1.1.1;
 
 
 use strict;
@@ -841,7 +841,7 @@ for use with RSBX::Orgs::ITU::X690::BERderived::BasicValidation::Validate().
 
 The following types of BER object type encoding validation failure hints are
 provided by this profile. Each validation failure hint also identifies the
-specifiec object type encoding(s) that failed the validation.
+specific object type encoding(s) that failed the validation.
 
 =over 4
 
@@ -911,7 +911,7 @@ implemented validator was encountered.
 =back
 
 =item * The following I<string> object type encodings are treated as an
-I<Octet String> encoding and the object type encoding specifi restrictions
+I<Octet String> encoding and the object type encoding specific restrictions
 are not validated:
 
 =over 4
